@@ -22,7 +22,7 @@ return [
     'mainServer'    =>    [
         'namespace'    =>    'ImiApp\ApiServer',
         'type'        =>    Imi\Server\Type::HTTP,
-        'host'        =>    '127.0.0.1',
+        'host'        =>    '0.0.0.0',
         'port'        =>    8080,
         'configs'    =>    [
             // 'worker_num'        =>  8,
@@ -35,7 +35,7 @@ return [
         // 'SubServerName'   =>  [
         //     'namespace'    =>    'ImiApp\XXXServer',
         //     'type'        =>    Imi\Server\Type::HTTP,
-        //     'host'        =>    '127.0.0.1',
+        //     'host'        =>    '0.0.0.0',
         //     'port'        =>    13005,
         // ]
     ],
