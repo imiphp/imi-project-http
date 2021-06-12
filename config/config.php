@@ -54,15 +54,15 @@ return [
         //            'maxResources' => 10,
         //            'minResources' => 0,
         //         ],
-        //         // 连接池资源配置
-        //         'resource' => [
-        //             'host'        => '127.0.0.1',
-        //             'port'        => 3306,
-        //             'username'    => 'root',
-        //             'password'    => 'root',
-        //             'database'    => 'database_name',
-        //             'charset'     => 'utf8mb4',
-        //         ],
+        //     ],
+        //     // 连接池资源配置
+        //     'resource' => [
+        //         'host'        => '127.0.0.1',
+        //         'port'        => 3306,
+        //         'username'    => 'root',
+        //         'password'    => 'root',
+        //         'database'    => 'database_name',
+        //         'charset'     => 'utf8mb4',
         //     ],
         // ],
         // 'redis'    =>    [
@@ -76,12 +76,12 @@ return [
         //             'maxResources'    =>    10,
         //             'minResources'    =>    0,
         //         ],
-        //         // 连接池资源配置
-        //         'resource'    =>    [
-        //             'host'      => '127.0.0.1',
-        //             'port'      => 6379,
-        //             'password'  => null,
-        //         ],
+        //     ],
+        //     // 连接池资源配置
+        //     'resource'    =>    [
+        //         'host'      => '127.0.0.1',
+        //         'port'      => 6379,
+        //         'password'  => null,
         //     ],
         // ],
     ],
