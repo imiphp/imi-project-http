@@ -2,12 +2,19 @@
     "name": "imiphp/project-http",
     "type": "project",
     "description": "imi 框架的 Http Server 项目。https://imiphp.com",
-	"require": {
-		"yurunsoft/imi": "~1.0"
-	},
+    "require": {
+        "php": ">=7.1",
+        "imiphp/imi": "~1.3"
+    },
+    "require-dev": {
+        "swoole/ide-helper": "^4.4"
+    },
     "autoload": {
-        "psr-4" : {
-			"ImiApp\\" : "./"
+        "psr-4": {
+            "ImiApp\\": "./"
         }
-	}
+    },
+    "config": {
+        "sort-packages": true
+    }
 }
