@@ -17,6 +17,7 @@ return [
         // 'includePaths'    =>    [], // 要包含的路径数组
         'excludePaths'    =>    [
             $rootPath . '.git',
+            $rootPath . '.idea',
             $rootPath . 'bin',
             $rootPath . 'logs',
         ], // 要排除的路径数组，支持通配符*
