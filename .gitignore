@@ -1,3 +1,4 @@
 *.lock
+/.idea
 /.runtime
 /vendor
