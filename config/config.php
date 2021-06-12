@@ -44,16 +44,18 @@ return [
     'pools'    =>    [
         // 主数据库
         // 'maindb'    =>    [
-        //     // 同步池子
-        //     'sync'    =>    [
-        //         'pool'    =>    [
-        //             'class'        =>    \Imi\Db\Pool\SyncDbPool::class,
-        //             'config'    =>    [
-        //                 'maxResources'    =>    10,
-        //                 'minResources'    =>    0,
-        //             ],
+        //     'pool' => [
+        //         // 同步池类名
+        //         'syncClass'     =>    \Imi\Db\Pool\SyncDbPool::class,
+        //         // 协程池类名
+        //         'asyncClass'    =>    \Imi\Db\Pool\CoroutineDbPool::class,
+        //         // 连接池配置
+        //         'config' => [
+        //            'maxResources' => 10,
+        //            'minResources' => 0,
         //         ],
-        //         'resource'    =>    [
+        //         // 连接池资源配置
+        //         'resource' => [
         //             'host'        => '127.0.0.1',
         //             'port'        => 3306,
         //             'username'    => 'root',
@@ -62,53 +64,24 @@ return [
         //             'charset'     => 'utf8mb4',
         //         ],
         //     ],
-        //     // 异步池子，worker进程使用
-        //     'async'    =>    [
-        //         'pool'    =>    [
-        //             'class'        =>    \Imi\Db\Pool\CoroutineDbPool::class,
-        //             'config'    =>    [
-        //                 'maxResources'    =>    10,
-        //                 'minResources'    =>    0,
-        //             ],
-        //         ],
-        //         'resource'    =>    [
-        //             'host'        => '127.0.0.1',
-        //             'port'        => 3306,
-        //             'username'    => 'root',
-        //             'password'    => 'root',
-        //             'database'    => 'database_name',
-        //             'charset'     => 'utf8mb4',
-        //         ],
-        //     ]
         // ],
         // 'redis'    =>    [
-        //     'sync'    =>    [
-        //         'pool'    =>    [
-        //             'class'        =>    \Imi\Redis\SyncRedisPool::class,
-        //             'config'    =>    [
-        //                 'maxResources'    =>    10,
-        //                 'minResources'    =>    0,
-        //             ],
+        //     'pool'    =>    [
+        //         // 同步池类名
+        //         'syncClass'     =>    \Imi\Redis\SyncRedisPool::class,
+        //         // 协程池类名
+        //         'asyncClass'    =>    \Imi\Redis\CoroutineRedisPool::class,
+        //         // 连接池配置
+        //         'config'    =>    [
+        //             'maxResources'    =>    10,
+        //             'minResources'    =>    0,
         //         ],
+        //         // 连接池资源配置
         //         'resource'    =>    [
         //             'host'      => '127.0.0.1',
         //             'port'      => 6379,
         //             'password'  => null,
-        //         ]
-        //     ],
-        //     'async'    =>    [
-        //         'pool'    =>    [
-        //             'class'        =>    \Imi\Redis\CoroutineRedisPool::class,
-        //             'config'    =>    [
-        //                 'maxResources'    =>    10,
-        //                 'minResources'    =>    0,
-        //             ],
         //         ],
-        //         'resource'    =>    [
-        //             'host'      => '127.0.0.1',
-        //             'port'      => 6379,
-        //             'password'  => null,
-        //         ]
         //     ],
         // ],
     ],
