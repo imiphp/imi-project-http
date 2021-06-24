@@ -1,15 +1,20 @@
 <?php
+
 namespace ImiApp\ApiServer\Controller;
 
-use Imi\Controller\HttpController;
+use Imi\App;
+use Imi\Db\Db;
+use Imi\Redis\Redis;
+use Imi\Server\Http\Controller\HttpController;
+use Imi\Server\Http\Route\Annotation\Action;
+use Imi\Server\Http\Route\Annotation\Controller;
+use Imi\Server\Http\Route\Annotation\Route;
+use Imi\Server\View\Annotation\HtmlView;
 use Imi\Server\View\Annotation\View;
-use Imi\Server\Route\Annotation\Route;
-use Imi\Server\Route\Annotation\Action;
-use Imi\Server\Route\Annotation\Controller;
 
 /**
  * @Controller("/")
- * @View(baseDir="index/")
+ * @HtmlView(baseDir="index/")
  */
 class IndexController extends HttpController
 {
@@ -23,8 +28,8 @@ class IndexController extends HttpController
     public function index()
     {
         return [
-            'hello' =>  'imi',
-            'time'  =>  date('Y-m-d H:i:s', time()),
+            'hello' => 'imi',
+            'time'  => date('Y-m-d H:i:s', time()),
         ];
     }
 
@@ -32,12 +37,36 @@ class IndexController extends HttpController
      * @Action
      * @return array
      */
-    public function api($time)
+    public function api()
     {
         return [
-            'hello' =>  'imi',
-            'time'  =>  date('Y-m-d H:i:s', time()),
+            'mode'  => App::getApp()->getType(),
+            'hello' => 'imi',
+            'time'  => date('Y-m-d H:i:s', time()),
         ];
     }
 
+    /**
+     * @Action
+     * @return array
+     */
+    public function db()
+    {
+        return [
+            'mode'  => App::getApp()->getType(),
+            'mysqlVersion'=> Db::getInstance()->query('select VERSION()')->fetchColumn(),
+        ];
+    }
+
+    /**
+     * @Action
+     * @return array
+     */
+    public function redis()
+    {
+        return [
+            'mode' => App::getApp()->getType(),
+            'info' => Redis::info(),
+        ];
+    }
 }

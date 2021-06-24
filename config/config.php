@@ -1,101 +1,154 @@
 <?php
+
+use Imi\App;
+
+$mode = App::isInited() ? App::getApp()->getType() : null;
+
 return [
     // 项目根命名空间
     'namespace'    =>    'ImiApp',
 
     // 配置文件
     'configs'    =>    [
-        'beans'        =>    __DIR__ . '/beans.php',
-    ],
-
-    // 扫描目录
-    'beanScan'    =>    [
-        'ImiApp\Listener',
-        'ImiApp\Task',
+        'beans'        =>    __DIR__.'/beans.php',
     ],
 
     // 组件命名空间
-    'components'    =>  [
+    'components'    => [
+        'Fpm' => 'Imi\Fpm',
     ],
 
-    // 主服务器配置
-    'mainServer'    =>    [
+    'ignoreNamespace'   => [
+    ],
+
+    'ignorePaths' => [
+        // dirname(__DIR__).'/vendor',
+        dirname(__DIR__).'/public',
+    ],
+
+    // Swoole 主服务器配置
+    'mainServer'    =>    'swoole' === $mode ? [
         'namespace'    =>    'ImiApp\ApiServer',
-        'type'        =>    Imi\Server\Type::HTTP,
+        'type'        =>    Imi\Swoole\Server\Type::HTTP,
         'host'        =>    '0.0.0.0',
         'port'        =>    8080,
         'configs'    =>    [
             // 'worker_num'        =>  8,
             // 'task_worker_num'   =>  16,
         ],
-    ],
+    ] : [],
 
-    // 子服务器（端口监听）配置
-    'subServers'        =>    [
+    // Swoole 子服务器（端口监听）配置
+    'subServers'        =>    'swoole' === $mode ? [
         // 'SubServerName'   =>  [
         //     'namespace'    =>    'ImiApp\XXXServer',
         //     'type'        =>    Imi\Server\Type::HTTP,
         //     'host'        =>    '0.0.0.0',
         //     'port'        =>    13005,
         // ]
-    ],
+    ] : [],
+
+    // Workerman 服务器配置
+    'workermanServer' => 'workerman' === $mode ? [
+        'http' => [
+            'namespace' => 'ImiApp\ApiServer',
+            'type'      => Imi\Workerman\Server\Type::HTTP,
+            'host'      => '0.0.0.0',
+            'port'      => 8080,
+            'configs'   => [
+            ],
+        ],
+    ] : [],
+
+    // fpm 服务器配置
+    'fpm' => 'fpm' === $mode ? [
+        'serverPath' => dirname(__DIR__).'/ApiServer',
+    ] : [],
 
     // 连接池配置
-    'pools'    =>    [
+    'pools'    => 'swoole' === $mode ? [
         // 主数据库
-        // 'maindb'    =>    [
-        //     'pool' => [
-        //         // 同步池类名
-        //         'syncClass'     =>    \Imi\Db\Pool\SyncDbPool::class,
-        //         // 协程池类名
-        //         'asyncClass'    =>    \Imi\Db\Pool\CoroutineDbPool::class,
-        //         // 连接池配置
-        //         'config' => [
-        //            'maxResources' => 10,
-        //            'minResources' => 0,
-        //         ],
-        //     ],
-        //     // 连接池资源配置
-        //     'resource' => [
-        //         'host'        => '127.0.0.1',
-        //         'port'        => 3306,
-        //         'username'    => 'root',
-        //         'password'    => 'root',
-        //         'database'    => 'database_name',
-        //         'charset'     => 'utf8mb4',
-        //     ],
-        // ],
-        // 'redis'    =>    [
-        //     'pool'    =>    [
-        //         // 同步池类名
-        //         'syncClass'     =>    \Imi\Redis\SyncRedisPool::class,
-        //         // 协程池类名
-        //         'asyncClass'    =>    \Imi\Redis\CoroutineRedisPool::class,
-        //         // 连接池配置
-        //         'config'    =>    [
-        //             'maxResources'    =>    10,
-        //             'minResources'    =>    0,
-        //         ],
-        //     ],
-        //     // 连接池资源配置
-        //     'resource'    =>    [
-        //         'host'      => '127.0.0.1',
-        //         'port'      => 6379,
-        //         'password'  => null,
-        //     ],
-        // ],
-    ],
+        'maindb'    => [
+            'pool'    => [
+                'class'        => \Imi\Swoole\Db\Pool\CoroutineDbPool::class,
+                'config'       => [
+                    'maxResources'    => 10,
+                    'minResources'    => 1,
+                ],
+            ],
+            'resource'    => [
+                'host'        => '127.0.0.1',
+                'port'        => 3306,
+                'username'    => 'root',
+                'password'    => 'root',
+                'database'    => 'mysql',
+                'charset'     => 'utf8mb4',
+            ],
+        ],
+        'redis'    => [
+            'pool'    => [
+                'class'        => \Imi\Swoole\Redis\Pool\CoroutineRedisPool::class,
+                'config'       => [
+                    'maxResources'    => 10,
+                    'minResources'    => 1,
+                ],
+            ],
+            'resource'    => [
+                'host'      => '127.0.0.1',
+                'port'      => 6379,
+                'password'  => null,
+            ],
+        ],
+    ] : [],
 
     // 数据库配置
     'db'    =>    [
         // 数默认连接池名
         'defaultPool'    =>    'maindb',
+        // FPM、Workerman 下用
+        'connections'   => [
+            'maindb' => [
+                'host' => '127.0.0.1',
+                'port'        => 3306,
+                'username' => 'root',
+                'password' => 'root',
+                'database' => 'mysql',
+                'charset'  => 'utf8mb4',
+                // 'port'    => '3306',
+                // 'timeout' => '建立连接超时时间',
+                // 'charset' => '',
+                // 使用 hook pdo 驱动（缺省默认）
+                // 'dbClass' => \Imi\Db\Drivers\PdoMysql\Driver::class,
+                // 使用 hook mysqli 驱动
+                // 'dbClass' => \Imi\Db\Drivers\Mysqli\Driver::class,
+                // 使用 Swoole MySQL 驱动
+                // 'dbClass' => \Imi\Swoole\Db\Drivers\Swoole\Driver::class,
+                // 数据库连接后，执行初始化的 SQL
+                // 'sqls' => [
+                //     'select 1',
+                //     'select 2',
+                // ],
+            ],
+        ],
     ],
 
     // redis 配置
     'redis' =>  [
         // 数默认连接池名
         'defaultPool'   =>  'redis',
+        // FPM、Workerman 下用
+        'connections'   => [
+            'redis' => [
+                'host'	=>	'127.0.0.1',
+                'port'	=>	6379,
+                // 是否自动序列化变量
+                'serialize'	=>	true,
+                // 密码
+                'password'	=>	null,
+                // 第几个库
+                'db'	=>	0,
+            ],
+        ],
     ],
 
     // 内存表配置
@@ -124,5 +177,56 @@ return [
     // atmoic 配置
     'atomics'    =>  [
         // 'atomicLock'   =>  1,
+    ],
+
+    // 日志配置
+    'logger' => [
+        'channels' => [
+            'imi' => [
+                'handlers' => 'cli' === PHP_SAPI ? [
+                    [
+                        'class'     => \Imi\Log\Handler\ConsoleHandler::class,
+                        'formatter' => [
+                            'class'     => \Imi\Log\Formatter\ConsoleLineFormatter::class,
+                            'construct' => [
+                                'format'                     => null,
+                                'dateFormat'                 => 'Y-m-d H:i:s',
+                                'allowInlineLineBreaks'      => true,
+                                'ignoreEmptyContextAndExtra' => true,
+                            ],
+                        ],
+                    ],
+                    [
+                        'class'     => \Monolog\Handler\RotatingFileHandler::class,
+                        'construct' => [
+                            'filename' => dirname(__DIR__).'/.runtime/logs/log.log',
+                        ],
+                        'formatter' => [
+                            'class'     => \Monolog\Formatter\LineFormatter::class,
+                            'construct' => [
+                                'dateFormat'                 => 'Y-m-d H:i:s',
+                                'allowInlineLineBreaks'      => true,
+                                'ignoreEmptyContextAndExtra' => true,
+                            ],
+                        ],
+                    ],
+                ] : [
+                    [
+                        'class'     => \Monolog\Handler\RotatingFileHandler::class,
+                        'construct' => [
+                            'filename' => dirname(__DIR__).'/.runtime/logs/log.log',
+                        ],
+                        'formatter' => [
+                            'class'     => \Monolog\Formatter\LineFormatter::class,
+                            'construct' => [
+                                'dateFormat'                 => 'Y-m-d H:i:s',
+                                'allowInlineLineBreaks'      => true,
+                                'ignoreEmptyContextAndExtra' => true,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ],
 ];
