@@ -17,8 +17,7 @@ return [
     ],
 
     'ignorePaths' => [
-        // dirname(__DIR__).'/vendor',
-        dirname(__DIR__).'/public',
+        dirname(__DIR__).DIRECTORY_SEPARATOR.'public',
     ],
 
     // Swoole 主服务器配置
