@@ -14,6 +14,10 @@ imi 框架：https://www.imiphp.com
 
 * `composer create-project imiphp/project-http 2.0.x-dev`
 
+## Swoole
+
+为 Windows 系统用户兼容考虑，默认没有引入 Swoole 组件，如有需要请手动引入：`composer require imiphp/imi-swoole:2.0.x-dev`
+
 ## 启动命令
 
 PHP-FPM：`vendor/bin/imi-cli fpm/start`
