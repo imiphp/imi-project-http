@@ -13,11 +13,6 @@ return [
         'beans'        =>    __DIR__.'/beans.php',
     ],
 
-    // 组件命名空间
-    'components'    => [
-        'Fpm' => 'Imi\Fpm',
-    ],
-
     'ignoreNamespace'   => [
     ],
 
