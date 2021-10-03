@@ -18,6 +18,12 @@ imi 框架：https://www.imiphp.com
 
 为 Windows 系统用户兼容考虑，默认没有引入 Swoole 组件，如有需要请手动引入：`composer require imiphp/imi-swoole:~2.0.0`
 
+## RoadRunner
+
+默认没有引入 RoadRunner 组件，如有需要请手动引入：`composer require imiphp/imi-roadrunner:~2.0.0`
+
+> RoadRunner 二进制文件请自行下载！
+
 ## 启动命令
 
 PHP-FPM：`vendor/bin/imi-cli fpm/start`
@@ -27,6 +33,8 @@ PHP-FPM：`vendor/bin/imi-cli fpm/start`
 Swoole：`vendor/bin/imi-swoole swoole/start`
 
 Workerman：`vendor/bin/imi-workerman workerman/start`
+
+RoadRunner：`vendor/bin/imi-cli rr/start`
 
 > 切换环境运行前建议删除运行时文件目录：`rm -rf .runtime/*runtime`
 

@@ -18,6 +18,7 @@ return [
 
     'ignorePaths' => [
         dirname(__DIR__).DIRECTORY_SEPARATOR.'public',
+        dirname(__DIR__).DIRECTORY_SEPARATOR.'rr',
     ],
 
     // Swoole 主服务器配置
@@ -58,6 +59,13 @@ return [
     'fpm' => 'fpm' === $mode ? [
         'serverPath' => dirname(__DIR__).'/ApiServer',
     ] : [],
+
+    // roadrunner 服务器配置
+    'roadRunnerServer' => [
+        'main' => [
+            'namespace' => 'ImiApp\ApiServer',
+        ],
+    ],
 
     // 连接池配置
     'pools'    => 'swoole' === $mode ? [
@@ -177,8 +185,9 @@ return [
     'logger' => [
         'channels' => [
             'imi' => [
-                'handlers' => 'cli' === PHP_SAPI ? [
+                'handlers' => [
                     [
+                        'env'       => ['cli'],
                         'class'     => \Imi\Log\Handler\ConsoleHandler::class,
                         'formatter' => [
                             'class'     => \Imi\Log\Formatter\ConsoleLineFormatter::class,
@@ -190,21 +199,23 @@ return [
                             ],
                         ],
                     ],
+                    // RoadRunner worker 下日志
                     [
-                        'class'     => \Monolog\Handler\RotatingFileHandler::class,
+                        'env'       => ['roadrunner'],
+                        'class'     => \Monolog\Handler\StreamHandler::class,
                         'construct' => [
-                            'filename' => dirname(__DIR__).'/.runtime/logs/log.log',
+                            'stream'  => 'php://stderr',
                         ],
                         'formatter' => [
                             'class'     => \Monolog\Formatter\LineFormatter::class,
                             'construct' => [
+                                'format'                     => null,
                                 'dateFormat'                 => 'Y-m-d H:i:s',
                                 'allowInlineLineBreaks'      => true,
                                 'ignoreEmptyContextAndExtra' => true,
                             ],
                         ],
                     ],
-                ] : [
                     [
                         'class'     => \Monolog\Handler\RotatingFileHandler::class,
                         'construct' => [
