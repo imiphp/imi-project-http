@@ -12,15 +12,15 @@ imi 框架：https://www.imiphp.com
 
 ### 方法二
 
-* `composer create-project imiphp/project-http:~2.0.0`
+* `composer create-project imiphp/project-http:~2.1.0`
 
 ## Swoole
 
-为 Windows 系统用户兼容考虑，默认没有引入 Swoole 组件，如有需要请手动引入：`composer require imiphp/imi-swoole:~2.0.0`
+为 Windows 系统用户兼容考虑，默认没有引入 Swoole 组件，如有需要请手动引入：`composer require imiphp/imi-swoole:~2.1.0`
 
 ## RoadRunner
 
-默认没有引入 RoadRunner 组件，如有需要请手动引入：`composer require imiphp/imi-roadrunner:~2.0.0`
+默认没有引入 RoadRunner 组件，如有需要请手动引入：`composer require imiphp/imi-roadrunner:~2.1.0`
 
 > RoadRunner 二进制文件请自行下载！
 
