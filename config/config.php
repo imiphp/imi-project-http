@@ -187,7 +187,7 @@ return [
             'imi' => [
                 'handlers' => [
                     [
-                        'env'       => ['cli'],
+                        'env'       => ['cli', 'swoole', 'workerman'],
                         'class'     => \Imi\Log\Handler\ConsoleHandler::class,
                         'formatter' => [
                             'class'     => \Imi\Log\Formatter\ConsoleLineFormatter::class,
