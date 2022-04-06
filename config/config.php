@@ -190,6 +190,10 @@ return [
                     [
                         'env'       => ['cli', 'swoole', 'workerman'],
                         'class'     => \Imi\Log\Handler\ConsoleHandler::class,
+                        'construct' => [
+                            'level'  => \Imi\Log\MonoLogger::DEBUG, // 开发调试环境
+                            // 'level'  => \Imi\Log\MonoLogger::INFO,  // 生产环境
+                        ],
                         'formatter' => [
                             'class'     => \Imi\Log\Formatter\ConsoleLineFormatter::class,
                             'construct' => [
@@ -205,6 +209,8 @@ return [
                         'env'       => ['roadrunner'],
                         'class'     => \Monolog\Handler\StreamHandler::class,
                         'construct' => [
+                            'level'  => \Imi\Log\MonoLogger::DEBUG, // 开发调试环境
+                            // 'level'  => \Imi\Log\MonoLogger::INFO,  // 生产环境
                             'stream'  => 'php://stderr',
                         ],
                         'formatter' => [
@@ -220,6 +226,8 @@ return [
                     [
                         'class'     => \Monolog\Handler\RotatingFileHandler::class,
                         'construct' => [
+                            'level'  => \Imi\Log\MonoLogger::DEBUG, // 开发调试环境
+                            // 'level'  => \Imi\Log\MonoLogger::INFO,  // 生产环境
                             'filename' => App::get(AppContexts::APP_PATH_PHYSICS) . '/.runtime/logs/log.log',
                         ],
                         'formatter' => [
