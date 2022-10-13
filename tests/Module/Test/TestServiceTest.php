@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImiApp\Test\Module\Test;
 
 use Imi\App;
-use ImiApp\Model\Test\Service\TestService;
+use ImiApp\Module\Test\Service\TestService;
 use PHPUnit\Framework\TestCase;
 
 class TestServiceTest extends TestCase

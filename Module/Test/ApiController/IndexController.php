@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImiApp\ApiServer\Controller;
+namespace ImiApp\Module\Test\ApiController;
 
 use Imi\Aop\Annotation\Inject;
 use Imi\App;
@@ -14,11 +14,11 @@ use Imi\Server\Http\Route\Annotation\Controller;
 use Imi\Server\Http\Route\Annotation\Route;
 use Imi\Server\View\Annotation\HtmlView;
 use Imi\Server\View\Annotation\View;
-use ImiApp\Model\Test\Service\TestService;
+use ImiApp\Module\Test\Service\TestService;
 
 /**
  * @Controller("/")
- * @HtmlView(baseDir="index/")
+ * @HtmlView(baseDir="Test/template/index/")
  */
 class IndexController extends HttpController
 {

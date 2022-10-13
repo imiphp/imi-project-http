@@ -25,7 +25,7 @@ return [
             ],
         ],
         'HtmlView'    => [
-            'templatePath'    => \dirname(__DIR__) . '/template/',
+            'templatePath'    => \dirname(__DIR__, 2) . '/Module/',
             // 支持的模版文件扩展名，优先级按先后顺序
             'fileSuffixs'        => [
                 'tpl',

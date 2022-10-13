@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImiApp\Model\Test\Service;
+namespace ImiApp\Module\Test\Service;
 
 class TestService
 {
