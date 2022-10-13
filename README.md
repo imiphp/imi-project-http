@@ -73,3 +73,13 @@ PHP-FPM：`vendor/bin/imi-cli fpm/start`（不推荐）
 **分析项目：** `./vendor/bin/phpstan`
 
 **分析指定文件：** `./vendor/bin/phpstan test.php`
+
+### 测试用例
+
+内置 `phpunit`，可以实现自动化测试。
+
+文档：<https://phpunit.readthedocs.io/en/9.5/>
+
+测试用例 demo：`tests/Module/Test/TestServiceTest.php`
+
+运行测试用例：`composer test`

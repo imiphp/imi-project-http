@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImiApp\ApiServer\Controller;
 
+use Imi\Aop\Annotation\Inject;
 use Imi\App;
 use Imi\Db\Db;
 use Imi\Redis\Redis;
@@ -13,6 +14,7 @@ use Imi\Server\Http\Route\Annotation\Controller;
 use Imi\Server\Http\Route\Annotation\Route;
 use Imi\Server\View\Annotation\HtmlView;
 use Imi\Server\View\Annotation\View;
+use ImiApp\Model\Test\Service\TestService;
 
 /**
  * @Controller("/")
@@ -20,6 +22,11 @@ use Imi\Server\View\Annotation\View;
  */
 class IndexController extends HttpController
 {
+    /**
+     * @Inject
+     */
+    protected TestService $testService;
+
     /**
      * @Action
      * @Route("/")
@@ -30,7 +37,7 @@ class IndexController extends HttpController
     public function index()
     {
         return [
-            'hello' => 'imi',
+            'hello' => $this->testService->getImi(),
             'time'  => date('Y-m-d H:i:s', time()),
         ];
     }
