@@ -20,15 +20,15 @@ imi 文档：<https://doc.imiphp.com>
 
 ## 启动服务
 
-Swoole：`vendor/bin/imi-swoole swoole/start` （强烈推荐）
+**Swoole：**`vendor/bin/imi-swoole swoole/start` （强烈推荐）
 
-Workerman：`vendor/bin/imi-workerman workerman/start` （推荐）
+**Workerman：**`vendor/bin/imi-workerman workerman/start` （推荐）
 
-RoadRunner：`vendor/bin/imi-cli rr/start` （尝鲜）
+**RoadRunner：**`vendor/bin/imi-cli rr/start` （尝鲜）
 
 > 切换环境运行前建议删除运行时文件目录：`rm -rf .runtime/*runtime`
 
-PHP-FPM：`vendor/bin/imi-cli fpm/start`（不推荐）
+**PHP-FPM：**`vendor/bin/imi-cli fpm/start`（不推荐）
 
 建议在 FPM 模式下生成缓存：`vendor/bin/imi-cli imi/buildRuntime --app-namespace "ImiApp" --runtimeMode=Fpm`
 
@@ -44,13 +44,13 @@ PHP-FPM：`vendor/bin/imi-cli fpm/start`（不推荐）
 
 生产环境建议只保留一个容器，可以提升性能，imi 官方推荐使用 **Swoole**！
 
-移除 `imi-fpm`：`composer remove imi-fpm && rm -rf public`
+**移除 `imi-fpm`：**`composer remove imi-fpm && rm -rf public`
 
-移除 `imi-workerman`：`composer remove imi-workerman`
+**移除 `imi-workerman`：**`composer remove imi-workerman`
 
-移除 `imi-roadrunner`：`composer remove imi-roadrunner && rm -rf rr && rm -f .rr.yaml`
+**移除 `imi-roadrunner`：**`composer remove imi-roadrunner && rm -rf rr && rm -f .rr.yaml`
 
-移除 `imi-swoole`：`composer remove imi-swoole`（不推荐）
+**移除 `imi-swoole`：**`composer remove imi-swoole`（不推荐）
 
 ## 代码质量
 
@@ -78,8 +78,8 @@ PHP-FPM：`vendor/bin/imi-cli fpm/start`（不推荐）
 
 内置 `phpunit`，可以实现自动化测试。
 
-文档：<https://phpunit.readthedocs.io/en/9.5/>
+**文档：**<https://phpunit.readthedocs.io/en/9.5/>
 
-测试用例 demo：`tests/Module/Test/TestServiceTest.php`
+**测试用例 demo：**`tests/Module/Test/TestServiceTest.php`
 
-运行测试用例：`composer test`
+**运行测试用例：**`composer test`
