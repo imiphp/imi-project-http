@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ImiApp\ApiServer\Controller;
 
 use Imi\App;
@@ -35,6 +37,7 @@ class IndexController extends HttpController
 
     /**
      * @Action
+     *
      * @return array
      */
     public function api()
@@ -48,18 +51,20 @@ class IndexController extends HttpController
 
     /**
      * @Action
+     *
      * @return array
      */
     public function db()
     {
         return [
-            'mode'  => App::getApp()->getType(),
-            'mysqlVersion'=> Db::getInstance()->query('select VERSION()')->fetchColumn(),
+            'mode'         => App::getApp()->getType(),
+            'mysqlVersion' => Db::getInstance()->query('select VERSION()')->fetchColumn(),
         ];
     }
 
     /**
      * @Action
+     *
      * @return array
      */
     public function redis()

@@ -1,10 +1,16 @@
 # 说明
 
-imi 框架：https://www.imiphp.com
+这是一个 imi http 项目开发骨架项目，你可以基于这个项目来开发你的项目。
+
+imi 框架：<https://www.imiphp.com>
+
+imi 文档：<https://doc.imiphp.com>
 
 ## 安装
 
 创建项目：`composer create-project imiphp/project-http:~2.1.0`
+
+如果你希望在 php-fpm、Workerman 运行 imi：`已内置`
 
 如果你希望在 Swoole 运行 imi：`composer require imiphp/imi-swoole:~2.1.0`
 
@@ -12,7 +18,7 @@ imi 框架：https://www.imiphp.com
 
 > RoadRunner 二进制文件请自行下载！
 
-## 启动命令
+## 启动服务
 
 Swoole：`vendor/bin/imi-swoole swoole/start` （强烈推荐）
 
@@ -26,6 +32,44 @@ PHP-FPM：`vendor/bin/imi-cli fpm/start`（不推荐）
 
 建议在 FPM 模式下生成缓存：`vendor/bin/imi-cli imi/buildRuntime --app-namespace "ImiApp" --runtimeMode=Fpm`
 
-## 权限
+## 目录
 
-`.runtime` 目录需要有可写权限
+`.runtime` 是运行时文件读写目录，需要有可写权限
+
+`public` 是 php-fpm 站点根目录，不用可删除
+
+`rr` 是 RoadRunner 模式目录，不用可删除
+
+## 生产环境
+
+生产环境建议只保留一个容器，可以提升性能，imi 官方推荐使用 **Swoole**！
+
+移除 `imi-fpm`：`composer remove imi-fpm && rm -rf public`
+
+移除 `imi-workerman`：`composer remove imi-workerman`
+
+移除 `imi-roadrunner`：`composer remove imi-roadrunner && rm -rf rr && rm -f .rr.yaml`
+
+移除 `imi-swoole`：`composer remove imi-swoole`（不推荐）
+
+## 代码质量
+
+### 格式化代码
+
+内置 `php-cs-fixer`，统一代码风格。
+
+配置文件 `.php-cs-fixer.php`，可根据自己实际需要进行配置，文档：<https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/doc/config.rst>
+
+**格式化项目：** `./vendor/bin/php-cs-fixer fix`
+
+**格式化指定文件：** `./vendor/bin/php-cs-fixer fix test.php`
+
+### 代码静态分析
+
+内置 `phpstan`，可规范代码，排查出一些隐藏问题。
+
+配置文件 `phpstan.neon`，可根据自己实际需要进行配置，文档：<https://phpstan.org/config-reference>
+
+**分析项目：** `./vendor/bin/phpstan`
+
+**分析指定文件：** `./vendor/bin/phpstan test.php`
