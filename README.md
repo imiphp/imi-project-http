@@ -42,6 +42,8 @@ imi 文档：<https://doc.imiphp.com>
 
 ## 生产环境
 
+**关闭热更新：**`config/beans.php` 中 `hotUpdate.status` 设为 `false`
+
 生产环境建议只保留一个容器，可以提升性能，imi 官方推荐使用 **Swoole**！
 
 **移除 `imi-fpm`：**`composer remove imi-fpm && rm -rf public`
