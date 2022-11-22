@@ -32,5 +32,8 @@
     },
     "scripts": {
         "test": "@php ./vendor/bin/phpunit -c ./phpunit.xml"
+    },
+    "imi": {
+        "namespace": "ImiApp"
     }
 }

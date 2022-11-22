@@ -18,6 +18,24 @@ imi 文档：<https://doc.imiphp.com>
 
 > RoadRunner 二进制文件请自行下载！
 
+## 配置
+
+### 项目命名空间
+
+默认是 `ImiApp`，可以在 `composer.json` 中修改：
+
+* `autoload.psr-4.ImiApp`
+
+* `imi.namespace`
+
+然后替换代码中的命名空间即可。
+
+### 运行配置
+
+项目配置目录：`config`
+
+HTTP 服务器配置目录：`ApiServer/config`
+
 ## 启动服务
 
 **Swoole：**`vendor/bin/imi-swoole swoole/start` （强烈推荐）

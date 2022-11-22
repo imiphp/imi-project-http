@@ -8,9 +8,6 @@ use Imi\AppContexts;
 $mode = App::isInited() ? App::getApp()->getType() : null;
 
 return [
-    // 项目根命名空间
-    'namespace'    => 'ImiApp',
-
     // 配置文件
     'configs'    => [
         'beans'        => __DIR__ . '/beans.php',
