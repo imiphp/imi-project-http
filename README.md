@@ -64,13 +64,13 @@ HTTP 服务器配置目录：`ApiServer/config`
 
 生产环境建议只保留一个容器，可以提升性能，imi 官方推荐使用 **Swoole**！
 
-**移除 `imi-fpm`：**`composer remove imi-fpm && rm -rf public`
+**移除 `imi-fpm`：**`composer remove imiphp/imi-fpm && rm -rf public`
 
-**移除 `imi-workerman`：**`composer remove imi-workerman`
+**移除 `imi-workerman`：**`composer remove imiphp/imi-workerman`
 
-**移除 `imi-roadrunner`：**`composer remove imi-roadrunner && rm -rf rr && rm -f .rr.yaml`
+**移除 `imi-roadrunner`：**`composer remove imiphp/imi-roadrunner && rm -rf rr && rm -f .rr.yaml`
 
-**移除 `imi-swoole`：**`composer remove imi-swoole`（不推荐）
+**移除 `imi-swoole`：**`composer remove imiphp/imi-swoole`（不推荐）
 
 ## 代码质量
 
