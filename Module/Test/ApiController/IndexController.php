@@ -9,6 +9,7 @@ use Imi\App;
 use Imi\Db\Db;
 use Imi\Redis\Redis;
 use Imi\Server\Http\Controller\HttpController;
+use Imi\Server\Http\Message\Contract\IHttpResponse;
 use Imi\Server\Http\Route\Annotation\Action;
 use Imi\Server\Http\Route\Annotation\Controller;
 use Imi\Server\Http\Route\Annotation\Route;
@@ -31,10 +32,8 @@ class IndexController extends HttpController
      * @Action
      * @Route("/")
      * @View(renderType="html")
-     *
-     * @return array
      */
-    public function index()
+    public function index(): array
     {
         return [
             'hello' => $this->testService->getImi(),
@@ -44,10 +43,8 @@ class IndexController extends HttpController
 
     /**
      * @Action
-     *
-     * @return array
      */
-    public function api()
+    public function api(): array
     {
         return [
             'mode'  => App::getApp()->getType(),
@@ -58,10 +55,18 @@ class IndexController extends HttpController
 
     /**
      * @Action
-     *
-     * @return array
      */
-    public function db()
+    public function raw(): IHttpResponse
+    {
+        $this->response->getBody()->write('Hello imi!');
+
+        return $this->response;
+    }
+
+    /**
+     * @Action
+     */
+    public function db(): array
     {
         return [
             'mode'         => App::getApp()->getType(),
@@ -71,10 +76,8 @@ class IndexController extends HttpController
 
     /**
      * @Action
-     *
-     * @return array
      */
-    public function redis()
+    public function redis(): array
     {
         return [
             'mode' => App::getApp()->getType(),

@@ -58,6 +58,10 @@ HTTP 服务器配置目录：`ApiServer/config`
 
 `rr` 是 RoadRunner 模式目录，不用可删除
 
+`Module` 是模块目录，一种推荐的目录组织方式。每个模块内部有自己的控制器、服务层、模型等。当然，你也可以根据你的喜好自己组织，imi 框架没有强制要求。
+
+内置的示例控制器目录在 `Module/Test/ApiController`。
+
 ## 生产环境
 
 **关闭热更新：**`config/beans.php` 中 `hotUpdate.status` 设为 `false`

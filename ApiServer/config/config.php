@@ -33,5 +33,8 @@ return [
                 'php',
             ],
         ],
+        'HttpErrorHandler'    => [
+            'handler'    => \app\ApiServer\ErrorHandler\HttpErrorHandler::class,
+        ],
     ],
 ];
