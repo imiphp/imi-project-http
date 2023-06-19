@@ -19,7 +19,7 @@ return [
         ],
         'HttpDispatcher'    => [
             'middlewares'    => [
-                \ImiApp\ApiServer\Middleware\PoweredBy::class,
+                \ImiApp\ApiServer\Middleware\PoweredBy::class, // 该中间件仅用于示例，实际使用可以去除
                 \Imi\Server\Session\Middleware\HttpSessionMiddleware::class,
                 \Imi\Server\Http\Middleware\RouteMiddleware::class,
             ],
@@ -34,7 +34,7 @@ return [
             ],
         ],
         'HttpErrorHandler'    => [
-            'handler'    => \app\ApiServer\ErrorHandler\HttpErrorHandler::class,
+            'handler'    => \ImiApp\ApiServer\ErrorHandler\HttpErrorHandler::class,
         ],
     ],
 ];
