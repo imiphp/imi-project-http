@@ -19,6 +19,7 @@ use ImiApp\Module\Test\Service\TestService;
 
 /**
  * @Controller("/")
+ *
  * @HtmlView(baseDir="Test/template/index/")
  */
 class IndexController extends HttpController
@@ -30,7 +31,9 @@ class IndexController extends HttpController
 
     /**
      * @Action
+     *
      * @Route("/")
+     *
      * @View(renderType="html")
      */
     public function index(): array

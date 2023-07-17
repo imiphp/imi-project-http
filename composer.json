@@ -10,7 +10,7 @@
     },
     "require-dev": {
         "swoole/ide-helper": "^4.8",
-        "friendsofphp/php-cs-fixer": "~3.4.0",
+        "php-cs-fixer/shim": "~3.22.0",
         "phpstan/phpstan": "~1.8.0",
         "phpunit/phpunit": "~9.5.0"
     },

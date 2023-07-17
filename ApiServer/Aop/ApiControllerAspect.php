@@ -30,8 +30,6 @@ class ApiControllerAspect
      * )
      *
      * @AfterReturning
-     *
-     * @return mixed
      */
     public function parse(AfterReturningJoinPoint $joinPoint)
     {
